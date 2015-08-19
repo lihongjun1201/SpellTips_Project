@@ -10,6 +10,7 @@
 #include <iostream>
 #include "Mylog.h"
 #include "MyConfig.h"
+#include "MyDictionary.h"
 
 #include <string>
 
@@ -23,6 +24,14 @@ int main(void) {
     if (init_success)
         config.show();
 
+    std::map<std::string,std::string> &my_conf_map = config.get_map();
+
+    //获取字典
+    std::string dict_path = my_conf_map["my_dict_path"];
+    MyDictionary *pMydict = MyDictionary::createInstance(dict_path.c_str());
+
+    
+    
 
 
 

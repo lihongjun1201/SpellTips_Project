@@ -21,3 +21,27 @@
 2015-08-19 02:17:14,491: DEBUG  :debug:call func() ##func.cpp:func:15##
 2015-08-19 02:20:03,723: INFO  :Mylog created!
 2015-08-19 02:20:03,724: DEBUG  :get config success! ##MyConfig.cpp:init:32##
+2015-08-19 06:09:16,756: INFO  :Mylog created!
+2015-08-19 06:09:16,759: DEBUG  :get config success! ##MyConfig.cpp:init:32##
+2015-08-19 06:09:16,762: DEBUG  :read dict_file wrong ##MyDictionary.cpp:MyDictionary:48##
+2015-08-19 06:09:41,536: INFO  :Mylog created!
+2015-08-19 06:09:41,540: DEBUG  :get config success! ##MyConfig.cpp:init:32##
+2015-08-19 06:09:41,542: DEBUG  :read dict_file wrong ##MyDictionary.cpp:MyDictionary:48##
+2015-08-19 06:14:29,894: INFO  :Mylog created!
+2015-08-19 06:14:29,897: DEBUG  :get config success! ##MyConfig.cpp:init:32##
+2015-08-19 06:14:29,900: DEBUG  :read dict_file wrong ##MyDictionary.cpp:MyDictionary:48##
+2015-08-19 06:15:25,268: INFO  :Mylog created!
+2015-08-19 06:15:25,270: DEBUG  :get config success! ##MyConfig.cpp:init:32##
+2015-08-19 06:15:25,274: DEBUG  :read dict_file wrong ##MyDictionary.cpp:MyDictionary:48##
+2015-08-19 06:15:41,450: INFO  :Mylog created!
+2015-08-19 06:15:41,451: DEBUG  :get config success! ##MyConfig.cpp:init:32##
+2015-08-19 06:15:41,792: DEBUG  :create dic_vector success! ##MyDictionary.cpp:MyDictionary:62##
+2015-08-19 06:15:44,193: DEBUG  :create inverted_index success! ##MyDictionary.cpp:MyDictionary:68##
+2015-08-19 06:18:03,479: INFO  :Mylog created!
+2015-08-19 06:18:03,482: DEBUG  :get config success! ##MyConfig.cpp:init:32##
+2015-08-19 06:18:03,781: DEBUG  :create dic_vector success! ##MyDictionary.cpp:MyDictionary:62##
+2015-08-19 06:18:05,912: DEBUG  :create inverted_index success! ##MyDictionary.cpp:MyDictionary:68##
+2015-08-19 06:26:22,339: INFO  :Mylog created!
+2015-08-19 06:26:22,340: DEBUG  :get config success! ##MyConfig.cpp:init:32##
+2015-08-19 06:26:22,632: DEBUG  :create dic_vector success! ##MyDictionary.cpp:MyDictionary:75##
+2015-08-19 06:26:24,942: DEBUG  :create inverted_index success! ##MyDictionary.cpp:MyDictionary:81##
