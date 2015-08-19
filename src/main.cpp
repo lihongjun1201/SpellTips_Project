@@ -18,7 +18,7 @@ int main(void) {
     log.setPriority(DEBUG);   //设置log4cpp 优先级
     
     //初始化配置文件
-    std::string config_file_path = "./config.txt";
+    std::string config_file_path = "../conf/config.txt";
     MyConfig config(config_file_path);
     bool init_success = config.init();
     if (init_success)
