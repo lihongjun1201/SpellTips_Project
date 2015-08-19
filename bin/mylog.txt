@@ -1,0 +1,4 @@
+2015-08-18 19:48:35,670: INFO  :Mylog created!
+2015-08-18 19:48:35,672: ERROR  :error allen ##../src/main.cpp:main:14##
+2015-08-18 19:48:35,673: DEBUG  :debug allen ##../src/main.cpp:main:15##
+2015-08-18 19:48:35,674: INFO  :info allen ##../src/main.cpp:main:16##

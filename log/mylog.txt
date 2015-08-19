@@ -1,0 +1,5 @@
+2015-08-18 19:55:21,049: INFO  :Mylog created!
+2015-08-18 19:55:21,052: ERROR  :error allen ##main.cpp:main:15##
+2015-08-18 19:55:21,053: DEBUG  :debug allen ##main.cpp:main:16##
+2015-08-18 19:55:21,054: INFO  :info allen ##main.cpp:main:17##
+2015-08-18 19:55:21,055: DEBUG  :debug:call func() ##func.cpp:func:15##

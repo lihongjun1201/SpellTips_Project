@@ -54,7 +54,7 @@ Mylog::Mylog():
 
     //获取文件日志输出 （ 日志文件名:mylog.txt )
     log4cpp::FileAppender *file_appender = 
-        new log4cpp::FileAppender("fileAppender","mylog.txt");
+        new log4cpp::FileAppender("fileAppender","../log/mylog.txt");
     file_appender->setLayout(pattern_two);
 
     category_ref_.setPriority(log4cpp::Priority::DEBUG);
