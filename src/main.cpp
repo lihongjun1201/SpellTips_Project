@@ -9,14 +9,22 @@
 
 #include <iostream>
 #include "Mylog.h"
-#include "func.h"
+#include "MyConfig.h"
+
+#include <string>
 
 int main(void) {
-    logError("error allen");
-    logDebug("debug allen");
-    logInfo("info allen");
+    log.setPriority(DEBUG);   //设置log4cpp 优先级
+    
+    //初始化配置文件
+    std::string config_file_path = "./config.txt";
+    MyConfig config(config_file_path);
+    bool init_success = config.init();
+    if (init_success)
+        config.show();
 
-    func();
+
+
 
     return 0;
 }
