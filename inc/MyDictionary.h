@@ -8,11 +8,10 @@
 #ifndef _MY_DICTIONARY_H
 #define _MY_DICTIONARY_H
 
-#include "Mylog.h"
 
 #include <string>
 #include <map>
-
+#include <vector>
 #include <utility>
 #include <set>
 

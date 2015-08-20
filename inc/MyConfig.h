@@ -8,11 +8,11 @@
 #ifndef _MYCONFIG_H
 #define _MYCONFIG_H
 
-#include "Mylog.h"
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <map>
+#include <iostream>
 
 class MyConfig {
  public:

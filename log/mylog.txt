@@ -53,3 +53,11 @@
 2015-08-19 21:37:39,952: DEBUG  :get config success! ##../src/MyConfig.cpp:init:32##
 2015-08-19 21:37:40,251: DEBUG  :create dic_vector success! ##../src/MyDictionary.cpp:MyDictionary:75##
 2015-08-19 21:37:42,249: DEBUG  :create inverted_index success! ##../src/MyDictionary.cpp:MyDictionary:81##
+2015-08-19 21:54:17,091: INFO  :Mylog created!
+2015-08-19 21:54:17,093: DEBUG  :get config success! ##../src/MyConfig.cpp:init:32##
+2015-08-19 21:54:17,365: DEBUG  :create dic_vector success! ##../src/MyDictionary.cpp:MyDictionary:75##
+2015-08-19 21:54:19,394: DEBUG  :create inverted_index success! ##../src/MyDictionary.cpp:MyDictionary:81##
+2015-08-19 21:56:44,170: INFO  :Mylog created!
+2015-08-19 21:56:44,173: DEBUG  :get config success! ##../src/MyConfig.cpp:init:32##
+2015-08-19 21:56:44,446: DEBUG  :create dic_vector success! ##../src/MyDictionary.cpp:MyDictionary:75##
+2015-08-19 21:56:46,590: DEBUG  :create inverted_index success! ##../src/MyDictionary.cpp:MyDictionary:81##

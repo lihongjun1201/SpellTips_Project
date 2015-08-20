@@ -58,7 +58,6 @@ MyDictionary::MyDictionary(const char *dict_path) {
     std::ifstream file_in(dict_path);
 
     if (!file_in) {
-        logDebug("read dict_file wrong");
         exit(-1);
     }
 
@@ -72,14 +71,11 @@ MyDictionary::MyDictionary(const char *dict_path) {
     }
 
     file_in.close();
-    logDebug("create dic_vector success!");
 
     //创建倒排索引表
     for (size_t idx = 0; idx != m_dictionary_.size(); ++idx) {
         createInvertedIndex(idx);
     }
-    logDebug("create inverted_index success!");
-
 }
 
 

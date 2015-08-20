@@ -16,7 +16,6 @@ MyConfig::MyConfig(std::string &conf_file_path):
 //初始化配置文件map
 bool MyConfig::init() {
     if (!m_config_file_in_) {
-        logDebug("read config file error");
         return false;
     }
     
@@ -29,7 +28,6 @@ bool MyConfig::init() {
         m_config_map_.insert(make_pair(key,value));
     }
     m_config_file_in_.close();
-    logDebug("get config success!");
     return true;
 }
 
