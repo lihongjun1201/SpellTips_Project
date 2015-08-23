@@ -61,7 +61,7 @@ int main(void) {
     //loop.runEvery(5,print);
 
     InetAddress listen_addr(6917); //服务器端口号
-    SpellCheckServer server(&loop,listen_addr); 
+    SpellCheckServer server(&loop,listen_addr,pMydict); 
     
     server.start();
     loop.loop();

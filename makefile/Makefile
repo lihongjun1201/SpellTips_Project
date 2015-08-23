@@ -15,7 +15,7 @@ CXXFLAGS:= -Wall -g -std=c++11 $(addprefix -I, $(INC_DIR)) $(LIBS) -Wno-deprecat
 EXE:=../bin/main
 
 $(EXE):$(SRCS)
-	$(CXX) -o $(EXE) $(SRCS) $(CXXFLAGS)
+	$(CXX) -o  $(EXE)  $(SRCS) $(CXXFLAGS)
 
 clean:
 	rm -rf $(EXE)

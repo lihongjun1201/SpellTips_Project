@@ -10,13 +10,85 @@
 #include <muduo/base/Logging.h>
 #include <boost/bind.hpp>
 
+#include <algorithm>
+
+
 using namespace muduo;
 using namespace muduo::net;
+using namespace std;
+
+
+void SpellCheckServer::init() {
+}
+
+
+
+//返回三者最小函数
+int minInThree(int a, int b, int c) {
+    int t = a < b ? a : b;
+    return t < c ? t : c;
+}
+
+#if 1
+//获取最端编辑距离
+int getShortestEditDistance(std::string a, muduo::string b) {
+    int la = a.size();
+    int lb = b.size();
+
+    int dp_table[la+1][lb+1] ;
+
+    for (int i = 0; i <= la; ++i)
+        dp_table[i][0] = i;
+   
+    for (int j = 0; j <= lb; ++j)
+        dp_table[0][j] = j;
+
+    for (int i = 1; i < la + 1; ++i) {
+        for (int j =1; j < lb + 1; ++j) {
+            int cost = a[i-1] == b[j-1] ? 0 : 1; //相等则需要替换
+
+            int deletion = dp_table[i-1][j] + 1;
+            int insertion = dp_table[i][j-1] + 1;
+            int replace = dp_table[i-1][j-1] + cost;
+
+            dp_table[i][j] = minInThree(deletion,insertion,replace);
+        }
+    }
+
+#if 0
+    for (int i = 0; i < la + 1; ++i) {
+        for (int j = 0; j < lb + 1; ++j) {
+            cout << dp_table[i][j] << " ";
+        }
+        cout << endl;
+    }
+#endif
+
+    return dp_table[la][lb];
+}
+#endif
+
+
+//查找与用户输入相近的单词
+std::vector<std::string>& SpellCheckServer::searchDictionary(muduo::string &search_word) {
+    auto iter = ( pMydictionary_->get_dict() ).begin();
+    for (; iter != ( pMydictionary_->get_dict() ).end(); ++iter) {
+        int edit_dis = getShortestEditDistance(iter->first,search_word);
+        if (edit_dis <= 2) {
+            msearch_result_.push_back(iter->first);
+        }
+    }
+    cout << "相近词大约有" << msearch_result_.size() << "个\n";
+
+    return msearch_result_;
+}
+
 
 //服务器构造函数
 SpellCheckServer::SpellCheckServer(EventLoop *loop,
-                                  const InetAddress &listen_addr)
- : mserver_(loop,listen_addr,"SpellCheckServer")
+                                  const InetAddress &listen_addr,
+                                  MyDictionary *pDict)
+ : mserver_(loop,listen_addr,"SpellCheckServer"),pMydictionary_(pDict)
  {
     mserver_.setConnectionCallback(
         boost::bind(&SpellCheckServer::onConnection,this,_1));
@@ -29,6 +101,10 @@ SpellCheckServer::SpellCheckServer(EventLoop *loop,
     mserver_.start();
     LOG_INFO << "拼写检查服务器启动成功";
  }
+
+
+
+
 
 //有新客户端连接服务器时，新连接回调函数
  void SpellCheckServer::onConnection(const TcpConnectionPtr& conn)
@@ -54,7 +130,20 @@ void SpellCheckServer::onMessage(const TcpConnectionPtr &conn,
     //求出多个相似的单词，返回给用户
     //查询倒排索引可以提升效率（避免从头到尾比对字典）
 
-    conn->send(msg);  //收到数据后直接返回用户数据的字符串
+
+    auto result = searchDictionary(msg);
+    
+    for (auto iter = result.begin(); iter != result.end(); ++iter) {
+        cout << *iter << "\n";
+        conn->send(*iter+"\r\n");
+    }
+    
+    msearch_result_.clear();
+    conn->send("\r\n");
+
+    //pMydictionary_->showDict();
+    
+    
 }
 
 

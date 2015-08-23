@@ -14,16 +14,28 @@
 #include <boost/bind.hpp>
 #include <boost/noncopyable.hpp>
 
+#include <MyDictionary.h>
+
 #include <iostream>
+#include <string>
+#include <vector>
 
 using namespace muduo::net;
 
 class SpellCheckServer {
  public:
     //服务器构造函数
-    SpellCheckServer(EventLoop *loop,  const InetAddress &listen_addr);
+    SpellCheckServer(EventLoop *loop,
+                     const InetAddress &listen_addr,
+                     MyDictionary *pDict);
     
+    void init();
+
     void start();
+
+
+    std::vector<std::string>& searchDictionary(muduo::string &search_word);
+    
 
  private:
     void onConnection(const TcpConnectionPtr &conn);
@@ -34,41 +46,12 @@ class SpellCheckServer {
 
  private:
     TcpServer mserver_;
-
-
+    MyDictionary * pMydictionary_;
+    std::vector<std::string> msearch_result_; //查询结果
+    
 };
 
-#if 1
-class Printer: boost::noncopyable {
- public:
-    Printer(muduo::net::EventLoop *loop):loop_(loop),
-                                         count_(0)
-    {
-        loop_->runEvery(1,boost::bind(&Printer::print,this));
-    }
 
-    ~Printer() {
-        std::cout << "Final count is" << count_ << "\n";
-    }
-
-    void print() {
-        if (count_ < 5) {
-            std::cout << count_ << "\n";
-            ++count_;
-
-            loop_->runEvery(1,boost::bind(&Printer::print,this));
-
-        } else {
-            loop_->quit();
-        }
-    }
-
- private:
-    muduo::net::EventLoop *loop_;
-    int count_;
-
-};
-#endif
 
 
 
