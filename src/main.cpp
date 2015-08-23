@@ -12,6 +12,7 @@
 #include <iostream>
 #include "MyConfig.h"
 #include "MyDictionary.h"
+#include "MyServer.h"
 
 #include <muduo/net/TcpServer.h>
 #include <muduo/base/AsyncLogging.h>
@@ -25,58 +26,12 @@
 using namespace muduo;
 using namespace muduo::net;
 
-typedef std::map<string,string> UserMap;
-UserMap users;
 
-/*
-string getUser(const string &user)
-{
-    string result = "No such user";
-    UserMap::iterator iter = users.find(user);
-    if ( iter != users.end() ) {
-        result = iter->second;
-    }
-    return result;
+void print() {
+    std:: cout << "更新缓存" << "\n";
 }
 
 
-
-void onMessage(const TcpConnectionPtr &conn,
-                Buffer *buf,
-                Timestamp receiveTime)
-{
-    const char *crlf = buf->findCRLF();
-    if (crlf) {
-        string user(buf->peek(),crlf);
-        conn->send(getUser(user) + "\r\n");
-        buf->retrieveUntil(crlf + 2);
-        conn->shutdown();
-    }
-}
-*/
-
-/*
-std::pair<std::string,int> getWordCount(MyDictionary *ptr_dic,string seach_word) {
-    std::pair<std::string,int> result = ( ptr_dic->find(seach_word))->second;
-    return result;
-}
-*/
-
-
-int getDistance(string a,string b);
-
-void onMessage(const TcpConnectionPtr &conn,
-                Buffer *buf,
-                Timestamp receiveTime)
-{
-    const char *crlf = buf->findCRLF();
-    if (crlf) {
-        string user(buf->peek(),crlf);
-        conn->send(getUser(user) + "\r\n");
-        buf->retrieveUntil(crlf + 2);
-        conn->shutdown();
-    }
-}
 
 
 int main(void) {
@@ -98,19 +53,18 @@ int main(void) {
 
 
     //测试网络库
+    LOG_INFO << "PID = " << getpid();
+
+    muduo::net::EventLoop loop;
+
+    //定时器
+    //loop.runEvery(5,print);
+
+    InetAddress listen_addr(6917); //服务器端口号
+    SpellCheckServer server(&loop,listen_addr); 
     
-    users["allen"] = "handsome and clever";
-
-    EventLoop loop;
-
-    TcpServer server(&loop,InetAddress(1079),"Finger");
-    server.setMessageCallback(onMessage);
     server.start();
     loop.loop();
-
-    
-    
-
 
 
     return 0;
